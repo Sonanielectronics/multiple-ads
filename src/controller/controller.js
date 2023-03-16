@@ -22,6 +22,23 @@ class class1 {
   };
   static b = async (req, res) => {
     try {
+      var OriginalData = await Todo.find({});
+      console.log(OriginalData);
+      res.render("show", { OriginalData });
+    } catch (err) {
+      console.log(err);
+      return res.status(HTTP.SUCCESS).send({
+        errors: [
+          {
+            message: "Something went wrong!",
+            code: HTTP.INTERNAL_SERVER_ERROR,
+          },
+        ],
+      });
+    }
+  };
+  static c = async (req, res) => {
+    try {
       var OriginalData = await Todo.find({ App: req.params.id });
 
       if (OriginalData != 0) {
@@ -76,7 +93,7 @@ class class1 {
       });
     }
   };
-  static c = async (req, res) => {
+  static d = async (req, res) => {
     try {
       if (req.body.App == req.params.id) {
         var OriginalData = await Todo.find({ App: req.body.App });
@@ -190,7 +207,7 @@ class class1 {
       });
     }
   };
-  static d = async (req, res) => {
+  static e = async (req, res) => {
     try {
       var OriginalData = await Todo.find({ App: req.params.id });
 
